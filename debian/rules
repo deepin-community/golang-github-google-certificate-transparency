@@ -1,4 +1,10 @@
 #!/usr/bin/make -f
 
 %:
-	dh $@
+	dh $@ --buildsystem=golang --with=golang
+
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/tmp
+
+override_dh_auto_test:
+	# TODO: fix "panic: runtime error: cgo argument has Go pointer to Go pointer [recovered]"
