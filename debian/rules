@@ -1,10 +1,11 @@
 #!/usr/bin/make -f
 
+# limit to packages that cfssl need, add more packages as needed
+
+export DH_GOLANG_BUILDPKG := github.com/google/certificate-transparency-go/client github.com/google/certificate-transparency-go/jsonclient github.com/google/certificate-transparency-go/tls github.com/google/certificate-transparency-go/x509
+
+# package has special testdata
+export DH_GOLANG_INSTALL_ALL := 1
+
 %:
 	dh $@ --buildsystem=golang --with=golang
-
-override_dh_auto_install:
-	dh_auto_install --destdir=debian/tmp
-
-override_dh_auto_test:
-	# TODO: fix "panic: runtime error: cgo argument has Go pointer to Go pointer [recovered]"

@@ -1,0 +1,51 @@
+From: Mathias Gibbens <gibmat@debian.org>
+Description: Fix build failure on 32bit systems
+Forwarded: https://github.com/google/certificate-transparency-go/issues/1539
+diff --git a/client/logclient_test.go b/client/logclient_test.go
+index de20cec4..c4cc6fe5 100644
+--- a/client/logclient_test.go
++++ b/client/logclient_test.go
+@@ -286,7 +286,7 @@ func TestGetSTH(t *testing.T) {
+ 		t.Errorf("GetSTH().TreeSize=%d; want %d", sth.TreeSize, ValidSTHResponseTreeSize)
+ 	}
+ 	if sth.Timestamp != ValidSTHResponseTimestamp {
+-		t.Errorf("GetSTH().Timestamp=%v; want %v", sth.Timestamp, ValidSTHResponseTimestamp)
++		t.Errorf("GetSTH().Timestamp=%v; want %v", sth.Timestamp, int64(ValidSTHResponseTimestamp))
+ 	}
+ 	if sth.SHA256RootHash.Base64String() != ValidSTHResponseSHA256RootHash {
+ 		t.Errorf("GetSTH().SHA256RootHash=%v; want %v", sth.SHA256RootHash.Base64String(), ValidSTHResponseSHA256RootHash)
+diff --git a/x509/rpki.go b/x509/rpki.go
+index 520d6dc3..369d3a3d 100644
+--- a/x509/rpki.go
++++ b/x509/rpki.go
+@@ -149,7 +149,7 @@ func parseRPKIAddrBlocks(data []byte, nfe *NonFatalErrors) []*IPAddressFamilyBlo
+ // domain identifiers).
+ type ASIDRange struct {
+ 	Min int
+-	Max int
++	Max int64
+ }
+ 
+ // ASIdentifiers describes a collection of AS Identifiers (AS numbers or routing
+diff --git a/x509/rpki_test.go b/x509/rpki_test.go
+index 6494804c..54fab09a 100644
+--- a/x509/rpki_test.go
++++ b/x509/rpki_test.go
+@@ -243,7 +243,7 @@ func TestParseRPKIASIdentifiers(t *testing.T) {
+ 							"0205" + "00ffffffff")))), // INTEGER
+ 			wantAS: &ASIdentifiers{
+ 				ASIDRanges: []ASIDRange{
+-					{Min: 0, Max: 0x00ffffffff},
++					{Min: 0, Max: int64(0x00ffffffff)},
+ 				},
+ 			},
+ 		},
+@@ -273,7 +273,7 @@ func TestParseRPKIASIdentifiers(t *testing.T) {
+ 							"0205" + "00ffffffff")))), // INTEGER
+ 			wantRDI: &ASIdentifiers{
+ 				ASIDRanges: []ASIDRange{
+-					{Min: 0, Max: 0x00ffffffff},
++					{Min: 0, Max: int64(0x00ffffffff)},
+ 				},
+ 			},
+ 		},

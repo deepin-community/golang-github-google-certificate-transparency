@@ -1,3 +1,50 @@
+golang-github-google-certificate-transparency (1.2.1-4) unstable; urgency=medium
+
+  * Team upload
+  * Add patch to fix build failure on 32bit systems
+
+ -- Mathias Gibbens <gibmat@debian.org>  Sat, 27 Jul 2024 05:14:03 +0000
+
+golang-github-google-certificate-transparency (1.2.1-3) unstable; urgency=medium
+
+  * Team upload
+  * Add Testsuite: autopkgtest-pkg-go in d/control
+
+ -- Mathias Gibbens <gibmat@debian.org>  Sat, 27 Jul 2024 00:50:13 +0000
+
+golang-github-google-certificate-transparency (1.2.1-2) unstable; urgency=medium
+
+  * Team upload
+  * Upload changes from experimental to unstable
+  * d/control:
+    - Update Team's email address
+    - Update Standards-Version to 4.7.0 (no changes needed)
+    - Bump debhelper-compat to v13
+    - Sync Depends with Build-Depends
+
+ -- Mathias Gibbens <gibmat@debian.org>  Fri, 26 Jul 2024 01:38:24 +0000
+
+golang-github-google-certificate-transparency (1.2.1-1) experimental; urgency=medium
+
+  * Team Upload.
+  
+  [ Alexandre Viau ]
+  * Point Vcs-* urls to salsa.debian.org.
+
+  [ Reinhard Tartler ]
+  * New upstream release 1.2.1, NB: this repository has been split off
+    into a golang library (which this package continues to follow), and
+    the ct server called 'trillian' which is packaged separately.
+    - updated debian/copyright to follow changes
+  * Run package tests during packaging
+  * Bump standards version to 4.6.2, no changes needed
+  * Simplify packaging
+  * Unvendor previously vendored dependencies
+  * Limit golang packages that are built to reduce needed
+    build-dependencies, until all of them are available in debian
+
+ -- Reinhard Tartler <siretart@tauware.de>  Sat, 22 Jun 2024 07:57:46 -0400
+
 golang-github-google-certificate-transparency (0.0~git20160709.0.0f6e3d1~ds1-3) unstable; urgency=medium
 
   * Team upload.
@@ -11,7 +58,8 @@ golang-github-google-certificate-transparency (0.0~git20160709.0.0f6e3d1~ds1-3) 
 
 golang-github-google-certificate-transparency (0.0~git20160709.0.0f6e3d1~ds1-2) unstable; urgency=medium
 
-  * Replace golang-go with golang-any in Build-Depends, remove golang-go from Depends
+  * Replace golang-go with golang-any in Build-Depends, remove golang-go from
+    Depends
 
  -- Konstantinos Margaritis <markos@debian.org>  Tue, 08 Aug 2017 20:22:59 +0300
 

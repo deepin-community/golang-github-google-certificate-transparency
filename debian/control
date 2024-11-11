@@ -1,32 +1,55 @@
 Source: golang-github-google-certificate-transparency
-Section: devel
+Section: golang
 Priority: optional
-Maintainer: Debian Go Packaging Team <pkg-go-maintainers@lists.alioth.debian.org>
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
 Uploaders: Tim Potter <tpot@hpe.com>
-Build-Depends: debhelper (>= 10),
+Build-Depends: debhelper-compat (= 13),
                dh-golang,
                golang-any,
+               golang-github-golang-mock-dev,
+               golang-github-gorilla-mux-dev,
+               golang-github-hashicorp-golang-lru-v2-dev,
+               golang-github-jmoiron-sqlx-dev,
                golang-github-juju-ratelimit-dev,
                golang-github-mattn-go-sqlite3-dev,
                golang-github-mreiferson-go-httpclient-dev,
+               golang-github-rs-cors-dev,
+               golang-github-spf13-cobra-dev,
+               golang-github-spf13-pflag-dev,
                golang-github-stretchr-testify-dev,
-               golang-golang-x-net-dev, golang-github-jmoiron-sqlx-dev,
+               golang-github-transparency-dev-merkle-dev,
+               golang-golang-x-mod-dev,
+               golang-golang-x-net-dev,
+               golang-google-protobuf-dev,
+               golang-k8s-klog-dev,
                libssl-dev
-Standards-Version: 4.1.1
-Homepage: https://github.com/google/certificate-transparency
-Vcs-Browser: https://anonscm.debian.org/cgit/pkg-go/packages/golang-github-google-certificate-transparency.git
-Vcs-Git: https://anonscm.debian.org/git/pkg-go/packages/golang-github-google-certificate-transparency.git
-XS-Go-Import-Path: github.com/google/certificate-transparency
+Standards-Version: 4.7.0
+Homepage: https://github.com/google/certificate-transparency-go
+Vcs-Browser: https://salsa.debian.org/go-team/packages/golang-github-google-certificate-transparency
+Vcs-Git: https://salsa.debian.org/go-team/packages/golang-github-google-certificate-transparency.git
+XS-Go-Import-Path: github.com/google/certificate-transparency-go
+Testsuite: autopkgtest-pkg-go
 
 Package: golang-github-google-certificate-transparency-dev
 Architecture: all
-Depends: ${shlibs:Depends},
-         ${misc:Depends},
+Depends: golang-github-golang-mock-dev,
+         golang-github-gorilla-mux-dev,
+         golang-github-hashicorp-golang-lru-v2-dev,
+         golang-github-jmoiron-sqlx-dev,
          golang-github-juju-ratelimit-dev,
          golang-github-mattn-go-sqlite3-dev,
          golang-github-mreiferson-go-httpclient-dev,
+         golang-github-rs-cors-dev,
+         golang-github-spf13-cobra-dev,
+         golang-github-spf13-pflag-dev,
          golang-github-stretchr-testify-dev,
-         golang-golang-x-net-dev, golang-github-jmoiron-sqlx-dev
+         golang-github-transparency-dev-merkle-dev,
+         golang-golang-x-mod-dev,
+         golang-golang-x-net-dev,
+         golang-google-protobuf-dev,
+         golang-k8s-klog-dev,
+         ${misc:Depends},
+         ${shlibs:Depends}
 Description: Framework for monitoring and auditing SSL certificates
  The Certificate Transparency project provides a framework to explore
  ideas to improve the security of HTTPS connections by adding new
